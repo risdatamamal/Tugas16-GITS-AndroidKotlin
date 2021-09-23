@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class PopularMovies(
+data class Movies(
 
 	@field:SerializedName("id")
 	val id: Int? = null,

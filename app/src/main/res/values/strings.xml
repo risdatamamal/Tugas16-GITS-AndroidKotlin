@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Tugas 15</string>
+    <string name="app_name">Tugas 16</string>
     <string name="title">Judul Film</string>
     <string name="popularity">Jumlah Popularitas</string>
     <string name="overview">Deskripsi</string>
+    <string name="tv_popularity">Popularitas: </string>
 </resources>
