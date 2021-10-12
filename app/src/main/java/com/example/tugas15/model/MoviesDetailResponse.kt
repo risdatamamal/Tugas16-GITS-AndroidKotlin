@@ -1,10 +1,8 @@
-package com.example.tugas15.data
+package com.example.tugas15.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-data class ModelMoviesDetail(
+data class MoviesDetailResponse(
 
 	@field:SerializedName("original_language")
 	val originalLanguage: String? = null,

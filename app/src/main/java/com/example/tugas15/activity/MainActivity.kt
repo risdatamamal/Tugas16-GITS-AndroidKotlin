@@ -1,4 +1,4 @@
-package com.example.tugas15
+package com.example.tugas15.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tugas15.R
 import com.example.tugas15.adapter.MoviesAdapter
-import com.example.tugas15.data.ModelMoviesDetail
-import com.example.tugas15.data.MovieResponse
-import com.example.tugas15.data.Movies
+import com.example.tugas15.model.MoviesDetailResponse
+import com.example.tugas15.model.MovieResponse
+import com.example.tugas15.model.Movies
 import com.example.tugas15.services.NetworkConfig
 import kotlinx.android.synthetic.main.item_movie.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rv_movies: RecyclerView
@@ -23,11 +23,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "Tugas 16"
+        title = "Tugas 24"
         rv_movies = findViewById(R.id.rv_movies)
         rv_movies.setHasFixedSize(true)
 
-        NetworkConfig().getService()
+        // List Movies
+        NetworkConfig().getServiceMovieList()
             .getMoviesList()
             .enqueue(object : Callback<MovieResponse> {
                 override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
@@ -51,17 +52,18 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    // Detail Movie
     private fun showSelectedMovies(movies: Movies) {
-        NetworkConfig().getServieDetail()
-            .getDataDetail()
-            .enqueue(object : Callback<ModelMoviesDetail> {
-                override fun onFailure(call: Call<ModelMoviesDetail>, t: Throwable) {
+        NetworkConfig().getServiceDetailMovie()
+            .getDetailMovie(0)
+            .enqueue(object : Callback<MoviesDetailResponse> {
+                override fun onFailure(call: Call<MoviesDetailResponse>, t: Throwable) {
                     Toast.makeText(this@MainActivity, t.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(
-                    call: Call<ModelMoviesDetail>,
-                    response: Response<ModelMoviesDetail>
+                    call: Call<MoviesDetailResponse>,
+                    response: Response<MoviesDetailResponse>
                 ) {
                     Toast.makeText(this@MainActivity, "Kamu memilih " + movies.title, Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@MainActivity, DetailActivity::class.java)

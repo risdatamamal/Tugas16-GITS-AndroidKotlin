@@ -1,10 +1,12 @@
-package com.example.tugas15
+package com.example.tugas15.activity
 
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tugas15.R
+import kotlinx.android.synthetic.main.detail_activity.*
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -17,25 +19,15 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
-
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = tv_title.toString()
 
-        val tvTitle = findViewById<TextView>(R.id.tv_title)
-        val judul = intent.getStringExtra(EXTRA_TITLE)
-        tvTitle.text = judul
-        supportActionBar!!.title = judul
+        tv_title.text = intent.getStringExtra(EXTRA_TITLE)
+        tv_popularity.text = intent.getStringExtra(EXTRA_POPULARITY)
+        tv_overview.text = intent.getStringExtra(EXTRA_OVERVIEW)
 
-        val tvPopularity = findViewById<TextView>(R.id.tv_popularity)
-        val popularitas = intent.getStringExtra(EXTRA_POPULARITY)
-        tvPopularity.text = popularitas
-
-        val tvOverview = findViewById<TextView>(R.id.tv_overview)
-        val deskripsi = intent.getStringExtra(EXTRA_OVERVIEW)
-        tvOverview.text = deskripsi
-
-        val imgPoster = findViewById<ImageView>(R.id.poster_path_movies)
         val poster = intent.getIntExtra(EXTRA_POSTER, 1)
-        imgPoster.setImageResource(poster)
+        poster_path_movies.setImageResource(poster)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
