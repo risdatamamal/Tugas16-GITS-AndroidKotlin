@@ -1,14 +1,9 @@
 package com.example.tugas15.services
 
-import com.example.tugas15.model.MovieResponse
-import com.example.tugas15.model.MoviesDetailResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
 
 class NetworkConfig {
 
@@ -29,17 +24,9 @@ class NetworkConfig {
             .build()
     }
 
+    // Get service from MovieListService
     fun getServiceMovieList(): MovieListService = getRetrofit().create(MovieListService::class.java)
+
+    // Get service from MovieDetailService
     fun getServiceDetailMovie(): MovieDetailService = getRetrofit().create(MovieDetailService::class.java)
-}
-
-interface MovieListService {
-    @GET("movie/popular?api_key=af016fe4e15fb311411c83a16af9d6a7")
-    fun getMoviesList(): Call<MovieResponse>
-}
-
-interface MovieDetailService {
-    @GET("movie/{movie_id}?api_key=af016fe4e15fb311411c83a16af9d6a7&language=en-US")
-    fun getDetailMovie(
-        @Path("movie_id") movie_id: Int): Call<MoviesDetailResponse>
 }
