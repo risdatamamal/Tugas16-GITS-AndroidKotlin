@@ -13,7 +13,8 @@ import com.example.tugas15.activity.MovieDetailActivity
 import com.example.tugas15.R
 import com.example.tugas15.model.Movies
 
-class MoviesAdapter(private val listMovies: List<Movies>) : RecyclerView.Adapter<MoviesAdapter.ListViewHolder>() {
+class MoviesAdapter(private val listMovies: ArrayList<Movies>) : RecyclerView.Adapter<MoviesAdapter.ListViewHolder>() {
+
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
         val title_movies: TextView = itemView.findViewById(R.id.title_movies)
         val popularity_movies: TextView = itemView.findViewById(R.id.popularity_movies)
@@ -44,8 +45,8 @@ class MoviesAdapter(private val listMovies: List<Movies>) : RecyclerView.Adapter
     override fun getItemCount(): Int = listMovies.size
 
     fun setData(data: List<Movies>) {
-//        listMovies.clear()
-//        listMovies.addAll(data)
+        listMovies.clear()
+        listMovies.addAll(data)
         notifyDataSetChanged()
     }
 }

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="title">Judul Film</string>
-    <string name="popularity">Jumlah Popularitas</string>
-    <string name="overview">Deskripsi</string>
-</resources>

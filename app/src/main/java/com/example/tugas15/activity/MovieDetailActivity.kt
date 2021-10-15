@@ -22,7 +22,7 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun getDetailMovie(id: String?) {
-        NetworkConfig().getServiceDetailMovie()
+        NetworkConfig.getServiceDetailMovie()
             .getDetailMovie(id!!.toInt())
             .enqueue(object : Callback<MoviesDetailResponse> {
                 override fun onResponse(
@@ -30,10 +30,10 @@ class MovieDetailActivity : AppCompatActivity() {
                     response: Response<MoviesDetailResponse>?
                 ) {
                     if (response!!.isSuccessful){
-                        tv_title.text = response.body()?.originalTitle
-                        tv_popularity.text = response.body()?.popularity.toString()
-                        tv_overview.text = response.body()?.overview
-                        showDetail(response.body())
+                        tv_title.text = response.body()!!.originalTitle
+                        tv_popularity.text = response.body()!!.popularity.toString()
+                        tv_overview.text = response.body()!!.overview
+                        showDetail(response.body()!!)
                     }
                 }
 
@@ -43,10 +43,10 @@ class MovieDetailActivity : AppCompatActivity() {
             })
     }
 
-    fun showDetail(body: MoviesDetailResponse?) {
-        tv_title.text = body?.originalTitle
-        tv_popularity.text = body?.popularity.toString()
-        tv_overview.text = body?.overview
+    fun showDetail(body: MoviesDetailResponse) {
+        tv_title.text = body.originalTitle
+        tv_popularity.text = body.popularity.toString()
+        tv_overview.text = body.overview
     //        val poster = intent.getIntExtra(EXTRA_POSTER, 1)
     //        poster_path_movies.setImageResource(poster)
     }
